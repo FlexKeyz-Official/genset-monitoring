@@ -37,7 +37,13 @@ export function useGenset() {
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
+    const defaultAddr = DEFAULT_ADDRESS;
+    // Prefer an explicit default (from NEXT_PUBLIC_ESP32_IP) over any stored value
+    if (defaultAddr && defaultAddr !== "generator.local") {
+      if (stored !== defaultAddr) localStorage.setItem(STORAGE_KEY, defaultAddr);
+      setIp(defaultAddr);
+      setIpInput(defaultAddr);
+    } else if (stored) {
       setIp(stored);
       setIpInput(stored);
     }
