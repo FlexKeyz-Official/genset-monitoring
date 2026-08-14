@@ -1,5 +1,5 @@
 export const STORAGE_KEY = "generator_esp_ip";
-export const DEFAULT_ADDRESS = "generator.local";
+export const DEFAULT_ADDRESS = process.env.NEXT_PUBLIC_ESP32_IP || "generator.local";
 
 export const PROTECTION_RULES: [key: string, label: string][] = [
   ["phase_loss", "Phase loss"],
