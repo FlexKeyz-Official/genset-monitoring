@@ -24,3 +24,126 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer components {
+  .panel {
+    @apply bg-slate-900/60 border border-slate-800 rounded-xl p-4 md:p-5;
+  }
+  .eyebrow {
+    @apply text-[10px] font-bold uppercase tracking-widest text-slate-500;
+  }
+  .section-title {
+    @apply font-black uppercase tracking-wider text-xs text-slate-200;
+  }
+  .section-subtitle {
+    @apply text-[11px] text-slate-500 mt-1;
+  }
+  .help-text {
+    @apply text-[11px] text-slate-500;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide bg-slate-800 text-slate-300;
+  }
+  .badge.bad {
+    @apply bg-red-950 text-red-400 border border-red-800;
+  }
+  .metric-card {
+    @apply panel flex flex-col gap-2;
+  }
+  .metric-card span {
+    @apply eyebrow;
+  }
+  .metric-card strong {
+    @apply text-2xl font-black text-slate-100;
+  }
+  .mini-stat {
+    @apply panel flex flex-col gap-1;
+  }
+  .mini-stat span {
+    @apply eyebrow;
+  }
+  .mini-stat b {
+    @apply text-lg font-bold text-slate-100;
+  }
+  .meter {
+    @apply h-1.5 rounded-full bg-slate-800 overflow-hidden;
+  }
+  .meter i {
+    @apply block h-full rounded-full transition-all duration-300;
+  }
+  .nav-btn {
+    @apply px-3 py-2 rounded-md text-[11px] font-bold uppercase tracking-wide text-slate-400 bg-slate-800/60 hover:bg-slate-700 hover:text-slate-100 transition-colors;
+  }
+  .nav-btn.active {
+    @apply bg-emerald-600 text-white;
+  }
+  .connect-btn {
+    @apply px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wide bg-emerald-600 hover:bg-emerald-500 text-white transition-colors;
+  }
+  .action-btn {
+    @apply px-3 py-2.5 rounded-lg text-[11px] font-bold uppercase tracking-wide text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .start-btn {
+    @apply bg-emerald-600 hover:bg-emerald-500;
+  }
+  .stop-btn {
+    @apply bg-red-600 hover:bg-red-500;
+  }
+  .amber-btn {
+    @apply bg-amber-600 hover:bg-amber-500;
+  }
+  .neutral-btn {
+    @apply bg-slate-700 hover:bg-slate-600;
+  }
+  .green-btn {
+    @apply bg-teal-600 hover:bg-teal-500;
+  }
+  .register {
+    @apply flex items-center justify-center text-center px-2 py-3 rounded-lg text-[10px] font-bold uppercase tracking-wide bg-slate-800/60 text-slate-500 border border-slate-800;
+  }
+  .register.active {
+    @apply bg-red-950 text-red-400 border-red-800 animate-pulse;
+  }
+  .hardware-stat {
+    @apply flex flex-col items-center gap-1 p-2 rounded-lg bg-slate-800/40;
+  }
+  .hardware-stat span {
+    @apply text-[10px] uppercase tracking-wide text-slate-500;
+  }
+  .hardware-stat b {
+    @apply text-xs font-bold text-slate-200;
+  }
+  .status-list {
+    @apply divide-y divide-slate-800 text-xs;
+  }
+  .status-list > div {
+    @apply flex justify-between py-2;
+  }
+  .status-list span {
+    @apply text-slate-500;
+  }
+  .status-list b {
+    @apply text-slate-200 font-semibold;
+  }
+  .form-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+  .form-grid label {
+    @apply flex flex-col gap-1 text-[11px] font-bold uppercase tracking-wide text-slate-400;
+  }
+  .form-grid input {
+    @apply bg-slate-950 border border-slate-700 rounded px-3 py-2 text-xs font-mono text-emerald-400 normal-case tracking-normal font-normal;
+  }
+  .data-table {
+    @apply w-full text-xs border-collapse;
+  }
+  .data-table th {
+    @apply text-left p-2 text-slate-400 border-b border-slate-800 uppercase tracking-wide;
+  }
+  .data-table td {
+    @apply p-2 border-b border-slate-900 text-slate-200;
+  }
+  .average-row td {
+    @apply font-bold text-emerald-400 bg-slate-900/40;
+  }
+}
