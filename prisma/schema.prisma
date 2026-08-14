@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+}
+
+// One row per telemetry poll persisted from the dashboard, in addition to the ESP32's own SD card log.
+model Telemetry {
+  id           Int      @id @default(autoincrement())
+  recordedAt   DateTime @default(now())
+  voltage      Float?
+  current      Float?
+  frequency    Float?
+  powerFactor  Float?
+  outputPower  Float?
+  temperature  Float?
+  vibration    Float?
+  tilt         Float?
+  oilLevel     Float?
+  faultLatched Boolean  @default(false)
+  tripCause    String?
+  message      String?
+  raw          Json
+
+  @@index([recordedAt])
+}
+
+// Captured whenever fault_latched transitions from false to true.
+model FaultEvent {
+  id         Int      @id @default(autoincrement())
+  occurredAt DateTime @default(now())
+  tripCause  String?
+  message    String?
+  raw        Json
+
+  @@index([occurredAt])
+}
+
+// Snapshot of the protection/logging configuration each time it is saved.
+model ConfigSnapshot {
+  id            Int      @id @default(autoincrement())
+  savedAt       DateTime @default(now())
+  generatorName String?
+  config        Json
+}
