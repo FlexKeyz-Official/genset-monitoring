@@ -48,19 +48,19 @@ body {
     @apply bg-red-950 text-red-400 border border-red-800;
   }
   .metric-card {
-    @apply panel flex flex-col gap-2;
+    @apply bg-slate-900/60 border border-slate-800 rounded-xl p-4 md:p-5 flex flex-col gap-2;
   }
   .metric-card span {
-    @apply eyebrow;
+    @apply text-[10px] font-bold uppercase tracking-widest text-slate-500;
   }
   .metric-card strong {
     @apply text-2xl font-black text-slate-100;
   }
   .mini-stat {
-    @apply panel flex flex-col gap-1;
+    @apply bg-slate-900/60 border border-slate-800 rounded-xl p-4 md:p-5 flex flex-col gap-1;
   }
   .mini-stat span {
-    @apply eyebrow;
+    @apply text-[10px] font-bold uppercase tracking-widest text-slate-500;
   }
   .mini-stat b {
     @apply text-lg font-bold text-slate-100;
