@@ -54,9 +54,17 @@ export function useGenset() {
 
   const request = useCallback(
     async (path: string, opt: RequestInit = {}, timeout = 12000) => {
-      const r = await fetch(endpoint(path), { ...opt, signal: AbortSignal.timeout(timeout) });
-      if (!r.ok) throw new Error((await r.text()) || `HTTP ${r.status}`);
-      return r;
+      const url = endpoint(path);
+      try {
+        const r = await fetch(url, { ...opt, signal: AbortSignal.timeout(timeout) });
+        if (!r.ok) throw new Error((await r.text()) || `HTTP ${r.status}`);
+        return r;
+      } catch (e) {
+        // include URL in error to aid debugging (CORS, timeouts, DNS, etc.)
+        const msg = e instanceof Error ? e.message : String(e);
+        console.error(`Request to ${url} failed:`, e);
+        throw new Error(`${msg} (url: ${url})`);
+      }
     },
     [endpoint]
   );
@@ -111,7 +119,11 @@ export function useGenset() {
       } catch (e) {
         ipRef.current = prev;
         setIp(prev);
-        if (alertFail) showToast(`Connection failed: ${e instanceof Error ? e.message : String(e)}`);
+        if (alertFail) {
+          const em = e instanceof Error ? e.message : String(e);
+          showToast(`Connection failed: ${em}`);
+        }
+        console.error("tryAddress failed", { addr: addr, error: e });
         return false;
       }
     },
