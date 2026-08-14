@@ -1,111 +1,109 @@
 @import "tailwindcss";
 
+/* Core theme variables for a professional dark UI */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #071427; /* deep navy */
+  --surface: #0f1724; /* slightly lighter panel base */
+  --muted-surface: #0b1220;
+  --foreground: #e6eef8; /* near-white text */
+  --muted-text: #9aa6b2; /* secondary labels */
+  --accent: #10b981; /* emerald */
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --glass: 0.72;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @layer components {
   .panel {
-    @apply bg-slate-900/60 border border-slate-800 rounded-xl p-4 md:p-5;
+    @apply bg-[color:var(--surface)]/80 border border-slate-700 rounded-xl p-4 md:p-5;
   }
   .eyebrow {
-    @apply text-[10px] font-bold uppercase tracking-widest text-slate-500;
+    @apply text-[10px] font-semibold uppercase tracking-widest text-[color:var(--muted-text)];
   }
   .section-title {
-    @apply font-black uppercase tracking-wider text-xs text-slate-200;
+    @apply font-extrabold uppercase tracking-wider text-xs text-[color:var(--foreground)];
   }
   .section-subtitle {
-    @apply text-[11px] text-slate-500 mt-1;
+    @apply text-[11px] text-[color:var(--muted-text)] mt-1;
   }
   .help-text {
-    @apply text-[11px] text-slate-500;
+    @apply text-[11px] text-[color:var(--muted-text)];
   }
   .badge {
-    @apply inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide bg-slate-800 text-slate-300;
+    @apply inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-semibold uppercase tracking-wide bg-slate-800/50 text-[color:var(--muted-text)];
   }
   .badge.bad {
-    @apply bg-red-950 text-red-400 border border-red-800;
+    @apply bg-[color:var(--danger)]/10 text-[color:var(--danger)] border border-[color:var(--danger)]/20;
   }
   .metric-card {
     @apply bg-slate-900/60 border border-slate-800 rounded-xl p-4 md:p-5 flex flex-col gap-2;
   }
   .metric-card span {
-    @apply text-[10px] font-bold uppercase tracking-widest text-slate-500;
+    @apply text-[10px] font-semibold uppercase tracking-widest text-[color:var(--muted-text)];
   }
   .metric-card strong {
-    @apply text-2xl font-black text-slate-100;
+    @apply text-2xl font-extrabold text-[color:var(--foreground)];
   }
   .mini-stat {
     @apply bg-slate-900/60 border border-slate-800 rounded-xl p-4 md:p-5 flex flex-col gap-1;
   }
   .mini-stat span {
-    @apply text-[10px] font-bold uppercase tracking-widest text-slate-500;
+    @apply text-[10px] font-semibold uppercase tracking-widest text-[color:var(--muted-text)];
   }
   .mini-stat b {
-    @apply text-lg font-bold text-slate-100;
+    @apply text-lg font-bold text-[color:var(--foreground)];
   }
   .meter {
-    @apply h-1.5 rounded-full bg-slate-800 overflow-hidden;
+    @apply h-1.5 rounded-full bg-slate-700/40 overflow-hidden;
   }
   .meter i {
-    @apply block h-full rounded-full transition-all duration-300;
+    @apply block h-full rounded-full transition-all duration-300 bg-[color:var(--accent)];
   }
   .nav-btn {
-    @apply px-3 py-2 rounded-md text-[11px] font-bold uppercase tracking-wide text-slate-400 bg-slate-800/60 hover:bg-slate-700 hover:text-slate-100 transition-colors;
+    @apply px-3 py-2 rounded-md text-[11px] font-semibold uppercase tracking-wide text-[color:var(--muted-text)] bg-transparent hover:bg-slate-700/40 hover:text-[color:var(--foreground)] transition-colors;
   }
   .nav-btn.active {
-    @apply bg-emerald-600 text-white;
+    @apply bg-[color:var(--accent)] text-[color:var(--surface)] shadow-sm;
   }
   .connect-btn {
-    @apply px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wide bg-emerald-600 hover:bg-emerald-500 text-white transition-colors;
+    @apply px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wide bg-[color:var(--accent)] hover:bg-[color:var(--accent)]/85 text-[color:var(--surface)] transition-colors shadow-sm;
   }
   .action-btn {
-    @apply px-3 py-2.5 rounded-lg text-[11px] font-bold uppercase tracking-wide text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply px-3 py-2.5 rounded-lg text-[11px] font-semibold uppercase tracking-wide text-[color:var(--surface)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm;
   }
   .start-btn {
-    @apply bg-emerald-600 hover:bg-emerald-500;
+    @apply bg-[color:var(--accent)] hover:bg-[color:var(--accent)]/90;
   }
   .stop-btn {
-    @apply bg-red-600 hover:bg-red-500;
+    @apply bg-[color:var(--danger)] hover:bg-[color:var(--danger)]/90;
   }
   .amber-btn {
-    @apply bg-amber-600 hover:bg-amber-500;
+    @apply bg-[color:var(--warning)] hover:bg-[color:var(--warning)]/90 text-[color:var(--surface)];
   }
   .neutral-btn {
-    @apply bg-slate-700 hover:bg-slate-600;
+    @apply bg-slate-700/60 hover:bg-slate-700/80 text-[color:var(--foreground)];
   }
   .green-btn {
-    @apply bg-teal-600 hover:bg-teal-500;
+    @apply bg-emerald-500 hover:bg-emerald-400 text-[color:var(--surface)];
   }
   .register {
-    @apply flex items-center justify-center text-center px-2 py-3 rounded-lg text-[10px] font-bold uppercase tracking-wide bg-slate-800/60 text-slate-500 border border-slate-800;
+    @apply flex items-center justify-center text-center px-2 py-3 rounded-lg text-[10px] font-semibold uppercase tracking-wide bg-slate-800/40 text-[color:var(--muted-text)] border border-slate-700/40;
   }
   .register.active {
-    @apply bg-red-950 text-red-400 border-red-800 animate-pulse;
+    @apply bg-[color:var(--danger)]/12 text-[color:var(--danger)] border-[color:var(--danger)]/20;
   }
   .hardware-stat {
-    @apply flex flex-col items-center gap-1 p-2 rounded-lg bg-slate-800/40;
+    @apply flex flex-col items-center gap-1 p-2 rounded-lg bg-slate-800/30;
   }
   .hardware-stat span {
     @apply text-[10px] uppercase tracking-wide text-slate-500;
@@ -120,10 +118,10 @@ body {
     @apply flex justify-between py-2;
   }
   .status-list span {
-    @apply text-slate-500;
+    @apply text-[color:var(--muted-text)];
   }
   .status-list b {
-    @apply text-slate-200 font-semibold;
+    @apply text-[color:var(--foreground)] font-semibold;
   }
   .form-grid {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
@@ -132,18 +130,18 @@ body {
     @apply flex flex-col gap-1 text-[11px] font-bold uppercase tracking-wide text-slate-400;
   }
   .form-grid input {
-    @apply bg-slate-950 border border-slate-700 rounded px-3 py-2 text-xs font-mono text-emerald-400 normal-case tracking-normal font-normal;
+    @apply bg-slate-900/60 border border-slate-700 rounded px-3 py-2 text-xs font-mono text-[color:var(--foreground)] placeholder:text-[color:var(--muted-text)];
   }
   .data-table {
     @apply w-full text-xs border-collapse;
   }
   .data-table th {
-    @apply text-left p-2 text-slate-400 border-b border-slate-800 uppercase tracking-wide;
+    @apply text-left p-2 text-[color:var(--muted-text)] border-b border-slate-700 uppercase tracking-wide;
   }
   .data-table td {
-    @apply p-2 border-b border-slate-900 text-slate-200;
+    @apply p-2 border-b border-slate-700 text-[color:var(--foreground)];
   }
   .average-row td {
-    @apply font-bold text-emerald-400 bg-slate-900/40;
+    @apply font-bold text-[color:var(--accent)] bg-slate-900/30;
   }
 }
